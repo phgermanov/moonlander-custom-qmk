@@ -8,16 +8,14 @@ enum custom_keycodes {
   HSV_0_245_245,
   HSV_74_255_206,
   HSV_152_255_255,
-  ST_MACRO_0,
-  ST_MACRO_1,
 };
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_moonlander(
-    KC_ESCAPE,      KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_HYPR,                                        KC_ESCAPE,      KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_MINUS,       
+    KC_ESCAPE,      KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_TRANSPARENT,                                 KC_ESCAPE,      KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_MINUS,       
     KC_TAB,         KC_Q,           KC_W,           KC_F,           KC_P,           KC_B,           TG(1),                                          KC_BSLS,        KC_J,           KC_L,           KC_U,           KC_Y,           KC_SCLN,        LT(2,KC_EQUAL), 
-    KC_BSPC,        MT(MOD_LCTL, KC_A),MT(MOD_LALT, KC_R),MT(MOD_LSFT, KC_S),MT(MOD_LGUI, KC_T),MT(MOD_LSFT | MOD_LGUI, KC_G),ST_MACRO_0,                                                                     ST_MACRO_1,     MT(MOD_RSFT | MOD_RGUI, KC_M),MT(MOD_RGUI, KC_N),MT(MOD_RSFT, KC_E),MT(MOD_RALT, KC_I),MT(MOD_RCTL, KC_O),KC_QUOTE,       
+    KC_BSPC,        MT(MOD_LCTL, KC_A),MT(MOD_LALT, KC_R),MT(MOD_LSFT, KC_S),MT(MOD_LGUI, KC_T),MT(MOD_LSFT | MOD_LGUI, KC_G),KC_HYPR,                                                                        KC_MEH,         MT(MOD_RSFT | MOD_RGUI, KC_M),MT(MOD_RGUI, KC_N),MT(MOD_RSFT, KC_E),MT(MOD_RALT, KC_I),MT(MOD_RCTL, KC_O),KC_QUOTE,       
     KC_LEFT_SHIFT,  KC_Z,           KC_X,           KC_C,           KC_D,           KC_V,                                           KC_K,           KC_H,           KC_COMMA,       KC_DOT,         KC_UP,          KC_SLASH,       
     LT(1,KC_GRAVE), LSFT(KC_LEFT_ALT),LCTL(KC_LEFT_GUI),KC_LEFT_ALT,    KC_LEFT_CTRL,   KC_MEH,                                                                                                         KC_ESCAPE,      KC_LBRC,        KC_RBRC,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       
     KC_SPACE,       KC_LEFT_GUI,    KC_LEFT_CTRL,                   KC_LEFT_ALT,    KC_RIGHT_SHIFT, KC_ENTER
@@ -51,16 +49,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case ST_MACRO_0:
-    if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_LBRC) SS_DELAY(100) SS_TAP(X_B));
-    }
-    break;
-    case ST_MACRO_1:
-    if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_RBRC) SS_DELAY(100) SS_TAP(X_B));
-    }
-    break;
 
     case RGB_SLD:
         if (rawhid_state.rgb_control) {
