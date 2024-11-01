@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "achordion/achordion.h"
 #include "autocorrection/autocorrection.h"
 #include "version.h"
 #define MOON_LED_LEVEL LED_LEVEL
@@ -77,6 +78,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (!process_achordion(keycode, record)) {
+    return false;
+  }
   if (!process_autocorrection(keycode, record)) {
     return false;
   }
@@ -130,3 +134,5 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
+
+void matrix_scan_user(void) { achordion_task(); }

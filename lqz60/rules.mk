@@ -6,3 +6,4 @@ ORYX_ENABLE = yes
 RGB_MATRIX_CUSTOM_KB = yes
 SPACE_CADET_ENABLE = no
 SRC += autocorrection/autocorrection.c
+SRC += achordion/achordion.c
